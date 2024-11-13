@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LeftHand
   - RightHand
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - UI
   - Interactables
   - Player
-  - 
-  - 
+  - Door
+  - Frame
   - 
   - 
   - 
