@@ -4,16 +4,28 @@ using UnityEngine;
 public class TargetDummy : MonoBehaviour
 {
     [SerializeField] private Animator dummyAnimator;
+    [SerializeField] private int swordHitCount = 2;
+    [SerializeField] private int arrowHitCount = 1;
+    [SerializeField] public Transform spawnPoint;
+    
     private int hitCount = 0;
-    private static int MAX_HIT_COUNT = 2;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (other.gameObject.CompareTag("Arrow"))
+        if (collision.gameObject.CompareTag("Arrow"))
         {
-            dummyAnimator.SetTrigger("Death");
-            GetComponent<BoxCollider>().enabled = false;
-            Destroy(other.gameObject);
+            hitCount++;
+
+            if (hitCount < arrowHitCount)
+            {
+                dummyAnimator.SetTrigger("Hit");
+            }
+            else
+            {
+                dummyAnimator.SetTrigger("Death");
+                GetComponent<BoxCollider>().enabled = false;
+                Destroy(collision.gameObject);
+            }
         }
     }
 
@@ -23,7 +35,7 @@ public class TargetDummy : MonoBehaviour
         {
             hitCount++;
 
-            if (hitCount < MAX_HIT_COUNT)
+            if (hitCount < swordHitCount)
             {
                 dummyAnimator.SetTrigger("Hit");
             }
@@ -32,12 +44,6 @@ public class TargetDummy : MonoBehaviour
                 dummyAnimator.SetTrigger("Death");
                 GetComponent<BoxCollider>().enabled = false;
             }
-        }
-
-        if (collision.gameObject.CompareTag("Arrow"))
-        {
-            dummyAnimator.SetTrigger("Death");
-            GetComponent<BoxCollider>().enabled = false;
         }
     }
 
