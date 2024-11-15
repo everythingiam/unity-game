@@ -1,13 +1,21 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetDummy : MonoBehaviour
 {
     [SerializeField] private Animator dummyAnimator;
-    [SerializeField] private MeshCollider meshCollider; 
     private int hitCount = 0;
     private static int MAX_HIT_COUNT = 2;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Arrow"))
+        {
+            dummyAnimator.SetTrigger("Death");
+            GetComponent<BoxCollider>().enabled = false;
+            Destroy(other.gameObject);
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -24,6 +32,12 @@ public class TargetDummy : MonoBehaviour
                 dummyAnimator.SetTrigger("Death");
                 GetComponent<BoxCollider>().enabled = false;
             }
+        }
+
+        if (collision.gameObject.CompareTag("Arrow"))
+        {
+            dummyAnimator.SetTrigger("Death");
+            GetComponent<BoxCollider>().enabled = false;
         }
     }
 
