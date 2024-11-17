@@ -17,6 +17,7 @@ public class DummyShoot : MonoBehaviour
             {
                 Transform spawnPoint = target.GetComponent<TargetDummy>().spawnPoint;
                 StartCoroutine(ShootBullets(spawnPoint));
+                GetComponent<BoxCollider>().enabled = false;
             }
         }
     }
@@ -27,6 +28,7 @@ public class DummyShoot : MonoBehaviour
         {
             GameObject spawnedBullet = Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);
             spawnedBullet.GetComponent<Rigidbody>().velocity = spawnPoint.forward * bulletSpeed;
+            Destroy(spawnedBullet, 5f);
             yield return new WaitForSeconds(bulletInterval);
         }
     }
