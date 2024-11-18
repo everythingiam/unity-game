@@ -1,13 +1,8 @@
-using System.Collections;
 using UnityEngine;
 
 public class DummyShoot : MonoBehaviour
 {
-    [SerializeField] private GameObject[] targets; 
-    [SerializeField] private GameObject bullet; 
-    [SerializeField] private float bulletSpeed = 10f; 
-    [SerializeField] private int bulletCount = 10; 
-    [SerializeField] private float bulletInterval = 0.1f; 
+    [SerializeField] private GameObject[] targets;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,21 +10,15 @@ public class DummyShoot : MonoBehaviour
         {
             foreach (GameObject target in targets)
             {
-                Transform spawnPoint = target.GetComponent<TargetDummy>().spawnPoint;
-                StartCoroutine(ShootBullets(spawnPoint));
-                GetComponent<BoxCollider>().enabled = false;
+                TargetDummy dummy = target.GetComponent<TargetDummy>();
+                if (dummy != null)
+                {
+                    dummy.EnableTracking(true);
+                    dummy.StartShooting(); 
+                }
             }
-        }
-    }
 
-    private IEnumerator ShootBullets(Transform spawnPoint)
-    {
-        for (int i = 0; i < bulletCount; i++)
-        {
-            GameObject spawnedBullet = Instantiate(bullet, spawnPoint.position, spawnPoint.rotation);
-            spawnedBullet.GetComponent<Rigidbody>().velocity = spawnPoint.forward * bulletSpeed;
-            Destroy(spawnedBullet, 5f);
-            yield return new WaitForSeconds(bulletInterval);
+            GetComponent<BoxCollider>().enabled = false; 
         }
     }
 }

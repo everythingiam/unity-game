@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DummyTrigger : MonoBehaviour
@@ -13,7 +10,11 @@ public class DummyTrigger : MonoBehaviour
         {
             foreach (GameObject target in targets)
             {
-                target.GetComponent<TargetDummy>().ActivateDummy();
+                TargetDummy dummy = target.GetComponent<TargetDummy>();
+                if (dummy != null)
+                {
+                    dummy.ActivateDummy();
+                }
             }
         }
     }
