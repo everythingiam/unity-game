@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dummyAnimator: {fileID: 4962494194586834276}
   swordHitCount: 2
-  arrowHitCount: 2
+  arrowHitCount: 1
   spawnPoint: {fileID: 0}
 --- !u!65 &994315411263590961
 BoxCollider:

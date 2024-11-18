@@ -118,8 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd3b82008e275a4799d3c5ae60198d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targets:
-  - {fileID: 0}
+  targets: []
   bullet: {fileID: 8048454101838564637, guid: f303b7c8430402048a6d5997290685be, type: 3}
   bulletSpeed: 11
   bulletCount: 15

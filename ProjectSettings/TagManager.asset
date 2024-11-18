@@ -9,6 +9,8 @@ TagManager:
   - Weapon
   - Bow
   - Arrow
+  - Wood
+  - Metal
   layers:
   - Default
   - TransparentFX
