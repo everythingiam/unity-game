@@ -13,4 +13,9 @@ public class OpenBoxCollider : MonoBehaviour
         canvas.SetActive(false);
     }
 
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
 }
